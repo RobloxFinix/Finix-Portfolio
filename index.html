@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finix Portfolio</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #000;
+        }
+
+        /* Moving Background */
+        .moving-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            animation: move 5s linear infinite;
+        }
+
+        /* Keyframes for moving circles */
+        @keyframes move {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(-50vh);
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .circle:nth-child(1) { width: 20px; height: 20px; left: 10%; animation-duration: 4s; }
+        .circle:nth-child(2) { width: 30px; height: 30px; left: 50%; animation-duration: 6s; }
+        .circle:nth-child(3) { width: 25px; height: 25px; left: 80%; animation-duration: 5s; }
+        .circle:nth-child(4) { width: 15px; height: 15px; left: 20%; animation-duration: 7s; }
+        .circle:nth-child(5) { width: 35px; height: 35px; left: 70%; animation-duration: 3s; }
+
+        /* Header Section */
+        .header {
+            background-image: linear-gradient(to right, #000000, #333333);
+            padding: 50px;
+            text-align: center;
+            color: white;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Content Section */
+        .content {
+            margin: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        /* Projects Section */
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .project {
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s; /* Animering ved hover */
+        }
+
+        .project:hover {
+            transform: translateY(-5px); /* Løft ved hover */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); /* Dybere skygge ved hover */
+        }
+
+        .project img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            margin: 40px 0;
+            background-color: #333; /* Samme grå farve som de andre sektioner */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .pricing-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .pricing-list {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+
+        .pricing-list li {
+            margin: 10px 0;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Plads mellem logoerne */
+        }
+
+        .logo-box {
+            display: inline-block;
+            background-color: transparent; /* Gennemsigtig baggrund */
+            padding: 10px; /* Plads omkring logoet */
+            border: 2px solid #ffffff; /* Hvid kant */
+            border-radius: 8px; /* Runde hjørner */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); /* Hvid lys skygge */
+            transition: transform 0.2s; /* Animering ved hover */
+        }
+
+        .logo-box:hover {
+            transform: scale(1.05); /* Zoom effekt ved hover */
+        }
+
+        .logo-box img {
+            width: 50px; /* Størrelse på logoet */
+            height: 50px; /* Størrelse på logoet */
+        }
+
+        /* Terms of Service Section */
+        .terms {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .terms h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .terms p {
+            color: #ddd;
+        }
+
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="moving-background">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Finix Portfolio</h1>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div class="about">
+            <h2>About Me</h2>
+            <p>Welcome to my portfolio! I specialize in creating scripts for Roblox that enhance gameplay experiences.</p>
+        </div>
+
+        <!-- Projects Section -->
+        <section class="projects">
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>Description of the project, what you contributed, and any interesting challenges you faced.</p>
+            </div>
+
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>Description of the project, what you contributed, and any interesting challenges you faced.</p>
+            </div>
+
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Project 3">
+                <h3>Project 3</h3>
+                <p>Description of the project, what you contributed, and any interesting challenges you faced.</p>
+            </div>
+
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Project 4">
+                <h3>Project 4</h3>
+                <p>Description of the project, what you contributed, and any interesting challenges you faced.</p>
+            </div>
+
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Project 5">
+                <h3>Project 5</h3>
+                <p>Description of the project, what you contributed, and any interesting challenges you faced.</p>
+            </div>
+
+            <div class="project">
+                <img src="https://via.placeholder.com/300x200" alt="Project 6">
+                <h3>Project 6</h3>
+                <p>Description of the project, what you contributed, and any interesting challenges you faced.</p>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing-section">
+            <h2>Pricing Ranges</h2>
+            <ul class="pricing-list">
+                <li><strong>Debugging:</strong> 200-600 Robux</li>
+                <li><strong>Short & easy script:</strong> 500-1,200 Robux</li>
+                <li><strong>Long script:</strong> 1,500-2,700 Robux</li>
+                <li><strong>Scripting a system:</strong> 2,900-4,100 Robux</li>
+            </ul>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h2>Contact Me</h2>
+            <p>Join my Discord server or check out my Roblox profile:</p>
+            <div class="logo-container">
+                <a href="https://discord.gg/5UqeXeMuBa" target="_blank" class="logo-box">
+                    <!-- Indholdet af logoet, for eksempel et billede eller tekst -->
+                    <img src="data:image/png;base64,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" alt="Discord Logo">
+                </a>                
+                <a href="https://www.roblox.com/users/YOUR_ROBLOX_PROFILE_ID/profile" target="_blank" class="logo-box">
+                    <img src="data:image/jpeg;base64,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" alt="Roblox Logo">
+                </a>
+            </div>
+        </section>
+
+        <!-- Terms of Service Section -->
+        <section class="terms">
+            <h2>Terms of Service</h2>
+            <p>By using my services, you agree to the following terms:</p>
+            <p>- Services are provided as-is and no guarantees are made regarding functionality.</p>
+            <p>- Payment must be made upfront before any work begins.</p>
+            <p>- Refunds will only be given if the script does not work.</p>
+            <p>- I reserve the right to refuse service to anyone for any reason.</p>
+        </section>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 Finix. All rights reserved.</p>
+    </footer>
+</body>
+</html>
